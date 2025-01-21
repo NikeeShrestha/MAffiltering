@@ -1,4 +1,4 @@
-## Minor allele Frequency considering only homozygour sites and and Heterozygousity filtering 
+## Minor allele Frequency considering only homozygous sites and Heterozygousity filtering 
 
 How to run:
 
