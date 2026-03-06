@@ -1,18 +1,14 @@
 from collections import Counter
 import sys
+from tqdm import tqdm
 
 
 pathtovcf=sys.argv[1]
 pathtofilteredvcf=sys.argv[2]
-mafthrehsold=sys.argv[3]
-hetthreshold=sys.argv[4]
 
 data=open(str(pathtovcf))
-
-mafthreshold=float(mafthrehsold)
-hetthreshold=float(hetthreshold)
 with open(str(pathtofilteredvcf), 'w') as SNPs:
-    for line in data:
+    for line in tqdm(data):
         line=line.strip()
         if line.startswith("#"):
             # print(line)
@@ -35,5 +31,5 @@ with open(str(pathtofilteredvcf), 'w') as SNPs:
         hom_maf = min(hom_ref, hom_alt) / total_count
         het_f = het_count/total_count
 
-        if hom_maf > mafthreshold and het_f < hetthreshold:
+        if het_f < 0.5 * hom_maf:
                 SNPs.write(f'{line}\n')
