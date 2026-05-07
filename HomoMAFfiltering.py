@@ -31,5 +31,8 @@ with open(str(pathtofilteredvcf), 'w') as SNPs:
         hom_maf = min(hom_ref, hom_alt) / total_count
         het_f = het_count/total_count
 
+        if hom_maf < 0.05:
+             continue
+
         if het_f < 0.5 * hom_maf:
                 SNPs.write(f'{line}\n')
